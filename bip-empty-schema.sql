@@ -7,14 +7,14 @@ CREATE TABLE `articles` (
   `approved_revision_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `articles_articles_revision_ibfk_1_idx` (`approved_revision_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `articles_contents`;
 CREATE TABLE `articles_contents` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `content` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `articles_revisions`;
 CREATE TABLE `articles_revisions` (
@@ -35,14 +35,14 @@ CREATE TABLE `articles_revisions` (
   KEY `articles_articles_contents_ibfk_4_idx` (`content_id`),
   KEY `articles_articles_titles_ibfk_5_idx` (`title_id`),
   KEY `articles_revisions_galleries_ibfk_6_idx` (`gallery_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `articles_titles`;
 CREATE TABLE `articles_titles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `galleries`;
 CREATE TABLE `galleries` (
@@ -50,7 +50,7 @@ CREATE TABLE `galleries` (
   `approved_revision_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `galleries_galleries_revisions_ibfk_1_idx` (`approved_revision_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `galleries_images`;
 CREATE TABLE `galleries_images` (
@@ -61,7 +61,7 @@ CREATE TABLE `galleries_images` (
   PRIMARY KEY (`id`),
   KEY `galleries_images_images_revisions_ibfk_1_idx` (`image_revision_id`),
   KEY `galleries_images_galleries_revisions_ibfk_2_idx` (`gallery_revision_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `galleries_revisions`;
 CREATE TABLE `galleries_revisions` (
@@ -78,28 +78,28 @@ CREATE TABLE `galleries_revisions` (
   KEY `galleries_revisions_users_ibfk_3_idx` (`author_id`),
   KEY `galleries_revisions_users_ibfk_4_idx` (`approved_by_id`),
   KEY `galleries_revisions_galleries_ibfk_1` (`gallery_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `galleries_titles`;
 CREATE TABLE `galleries_titles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `path` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `images_descriptions`;
 CREATE TABLE `images_descriptions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `images_revisions`;
 CREATE TABLE `images_revisions` (
@@ -110,7 +110,7 @@ CREATE TABLE `images_revisions` (
   PRIMARY KEY (`id`),
   KEY `images_revisions_images_ibfk_1` (`image_id`),
   KEY `description` (`description`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
@@ -119,7 +119,7 @@ CREATE TABLE `roles` (
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `roles_users`;
 CREATE TABLE `roles_users` (
@@ -140,7 +140,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_username` (`username`),
   UNIQUE KEY `uniq_email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `user_tokens`;
 CREATE TABLE `user_tokens` (
