@@ -9,7 +9,17 @@ class Controller_Index extends Controller_Template
     {
         $article = ORM::factory('article', 1);
         
-        echo $article->current_revision->title->title;
+        echo $article->current->title->title . '<br>';
+        echo $article->current->content->content . '<br>';
+        echo $article->current->author->username . '<br>';
+        echo $article->current->approved_by->username . '<br>';
+        $images = $article->current->gallery->current->images->find_all();
+        
+        foreach ($images as $image)
+        {
+            echo $image->image->path . '<br>';
+        }
+    
     }
 
 } // End Welcome

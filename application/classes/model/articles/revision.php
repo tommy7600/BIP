@@ -1,18 +1,22 @@
 <?php
 
-class Model_Galleries_Revision extends ORM
+class Model_Articles_Revision extends ORM
 {
     protected $_belongs_to = array(
-        'gallery'   => array()
+        'article'   => array()
     );
     
     protected $_has_one = array(
-        'gallery'   => array(
-            'model' => 'gallery',
+        'article'   => array(
+            'model' => 'article',
             'foreign_key' => 'id'
         ),
         'title' => array(
-            'model' => 'galleries_title',
+            'model' => 'articles_title',
+            'foreign_key' => 'id'
+        ),
+        'content' => array(
+            'model' => 'articles_content',
             'foreign_key' => 'id'
         ),
         'gallery' => array(
@@ -27,14 +31,5 @@ class Model_Galleries_Revision extends ORM
             'model' => 'user',
             'foreign_key' => 'id'
         ),
-    );
-    
-    protected $_has_many = array(
-      'images' => array(
-          'model' => 'images_revision',
-          'through' => 'galleries_images',
-          'foreign_key' => 'gallery_revision_id',
-          'far_key' => 'id'
-      )  
     );
 }

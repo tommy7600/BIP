@@ -90,7 +90,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/',
+	'base_url'   => '/bip/',
 	'index_file' => FALSE, // SEO (avoid index.php/mycontroller/action)
     'profile' => (Kohana::$environment !== Kohana::PRODUCTION), // kohana profiler
     'caching' => (Kohana::$environment === Kohana::PRODUCTION), // kohana caching
