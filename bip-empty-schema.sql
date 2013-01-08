@@ -1,57 +1,23 @@
--- phpMyAdmin SQL Dump
--- version 3.5.4
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jan 08, 2013 at 09:34 AM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `bip`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `articles`
---
-
-CREATE TABLE IF NOT EXISTS `articles` (
+DROP TABLE IF EXISTS `articles`;
+CREATE TABLE `articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `approved_revision_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `articles_articles_revision_ibfk_1_idx` (`approved_revision_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `articles_contents`
---
-
-CREATE TABLE IF NOT EXISTS `articles_contents` (
+DROP TABLE IF EXISTS `articles_contents`;
+CREATE TABLE `articles_contents` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `content` longtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `articles_revisions`
---
-
-CREATE TABLE IF NOT EXISTS `articles_revisions` (
+DROP TABLE IF EXISTS `articles_revisions`;
+CREATE TABLE `articles_revisions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `article_id` int(10) unsigned NOT NULL,
   `global_revision` int(10) unsigned NOT NULL,
@@ -72,38 +38,23 @@ CREATE TABLE IF NOT EXISTS `articles_revisions` (
   KEY `articles_revisions_galleries_ibfk_6_idx` (`gallery_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `articles_titles`
---
-
-CREATE TABLE IF NOT EXISTS `articles_titles` (
+DROP TABLE IF EXISTS `articles_titles`;
+CREATE TABLE `articles_titles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `galleries`
---
-
-CREATE TABLE IF NOT EXISTS `galleries` (
+DROP TABLE IF EXISTS `galleries`;
+CREATE TABLE `galleries` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `approved_revision_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `galleries_galleries_revisions_ibfk_1_idx` (`approved_revision_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `galleries_images`
---
-
-CREATE TABLE IF NOT EXISTS `galleries_images` (
+DROP TABLE IF EXISTS `galleries_images`;
+CREATE TABLE `galleries_images` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gallery_revision_id` int(10) unsigned NOT NULL,
   `image_revision_id` int(10) unsigned NOT NULL,
@@ -113,13 +64,8 @@ CREATE TABLE IF NOT EXISTS `galleries_images` (
   KEY `galleries_images_galleries_revisions_ibfk_2_idx` (`gallery_revision_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `galleries_revisions`
---
-
-CREATE TABLE IF NOT EXISTS `galleries_revisions` (
+DROP TABLE IF EXISTS `galleries_revisions`;
+CREATE TABLE `galleries_revisions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gallery_id` int(10) unsigned NOT NULL,
   `title_id` int(10) unsigned NOT NULL,
@@ -131,54 +77,44 @@ CREATE TABLE IF NOT EXISTS `galleries_revisions` (
   PRIMARY KEY (`id`),
   KEY `galleries_revisions_galleries_titles_ibfk_2_idx` (`title_id`),
   KEY `galleries_revisions_users_ibfk_3_idx` (`author_id`),
-  KEY `galleries_revisions_users_ibfk_4_idx` (`approved_by_id`)
+  KEY `galleries_revisions_users_ibfk_4_idx` (`approved_by_id`),
+  KEY `galleries_revisions_galleries_ibfk_1` (`gallery_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `galleries_titles`
---
-
-CREATE TABLE IF NOT EXISTS `galleries_titles` (
+DROP TABLE IF EXISTS `galleries_titles`;
+CREATE TABLE `galleries_titles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `images`
---
-
-CREATE TABLE IF NOT EXISTS `images` (
+DROP TABLE IF EXISTS `images`;
+CREATE TABLE `images` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `path` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `images_descriptions`;
+CREATE TABLE `images_descriptions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
---
--- Table structure for table `images_revisions`
---
-
-CREATE TABLE IF NOT EXISTS `images_revisions` (
+DROP TABLE IF EXISTS `images_revisions`;
+CREATE TABLE `images_revisions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image_id` int(10) unsigned NOT NULL,
   `revision` int(11) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `description` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `images_revisions_images_ibfk_1` (`image_id`),
+  KEY `description` (`description`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
-
-CREATE TABLE IF NOT EXISTS `roles` (
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -186,34 +122,16 @@ CREATE TABLE IF NOT EXISTS `roles` (
   UNIQUE KEY `uniq_name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `name`, `description`) VALUES
-(1, 'login', 'Login privileges, granted after account confirmation'),
-(2, 'admin', 'Administrative user, has access to everything.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roles_users`
---
-
-CREATE TABLE IF NOT EXISTS `roles_users` (
+DROP TABLE IF EXISTS `roles_users`;
+CREATE TABLE `roles_users` (
   `user_id` int(10) unsigned NOT NULL,
   `role_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `fk_role_id` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userscol` varchar(45) DEFAULT NULL,
   `email` varchar(254) NOT NULL,
@@ -226,13 +144,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uniq_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_tokens`
---
-
-CREATE TABLE IF NOT EXISTS `user_tokens` (
+DROP TABLE IF EXISTS `user_tokens`;
+CREATE TABLE `user_tokens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `user_agent` varchar(40) NOT NULL,
@@ -245,19 +158,10 @@ CREATE TABLE IF NOT EXISTS `user_tokens` (
   KEY `expires` (`expires`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Constraints for dumped tables
---
 
---
--- Constraints for table `articles`
---
 ALTER TABLE `articles`
   ADD CONSTRAINT `articles_articles_revision_ibfk_1` FOREIGN KEY (`approved_revision_id`) REFERENCES `articles_revisions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Constraints for table `articles_revisions`
---
 ALTER TABLE `articles_revisions`
   ADD CONSTRAINT `articles_articles_revsions_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `articles_users_ibfk_2` FOREIGN KEY (`approved_by_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -266,47 +170,26 @@ ALTER TABLE `articles_revisions`
   ADD CONSTRAINT `articles_articles_titles_ibfk_5` FOREIGN KEY (`title_id`) REFERENCES `articles_titles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `articles_revisions_galleries_ibfk_6` FOREIGN KEY (`gallery_id`) REFERENCES `galleries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Constraints for table `galleries`
---
 ALTER TABLE `galleries`
   ADD CONSTRAINT `galleries_galleries_revisions_ibfk_1` FOREIGN KEY (`approved_revision_id`) REFERENCES `galleries_revisions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Constraints for table `galleries_images`
---
 ALTER TABLE `galleries_images`
   ADD CONSTRAINT `galleries_images_images_revisions_ibfk_1` FOREIGN KEY (`image_revision_id`) REFERENCES `images_revisions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `galleries_images_galleries_revisions_ibfk_2` FOREIGN KEY (`gallery_revision_id`) REFERENCES `galleries_revisions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Constraints for table `galleries_revisions`
---
 ALTER TABLE `galleries_revisions`
   ADD CONSTRAINT `galleries_revisions_galleries_ibfk_1` FOREIGN KEY (`gallery_id`) REFERENCES `galleries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `galleries_revisions_galleries_titles_ibfk_2` FOREIGN KEY (`title_id`) REFERENCES `galleries_titles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `galleries_revisions_users_ibfk_3` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `galleries_revisions_users_ibfk_4` FOREIGN KEY (`approved_by_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Constraints for table `images_revisions`
---
 ALTER TABLE `images_revisions`
+  ADD CONSTRAINT `images_revisions_ibfk_1` FOREIGN KEY (`description`) REFERENCES `images_descriptions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `images_revisions_images_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Constraints for table `roles_users`
---
 ALTER TABLE `roles_users`
   ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
---
--- Constraints for table `user_tokens`
---
 ALTER TABLE `user_tokens`
   ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
