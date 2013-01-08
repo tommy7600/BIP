@@ -17,7 +17,7 @@ abstract class Controller_template extends Kohana_Controller_Template
         $this->template->query = $this->request->query();
         $this->template->post = $this->request->post();
 
-        // views autoloader beggining
+        // views autoloader beginning
         $this->template->content = strtolower($this->request->controller() . '\\' . $this->request->action());
     }
 

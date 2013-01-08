@@ -13,7 +13,7 @@
 class Controller_manageuser extends Controller_user
 {
     protected $title = 'Użytkownicy';
-    public $template = 'manageuser/template';
+    public $template = 'template';
     protected $role;
 
     public function before()

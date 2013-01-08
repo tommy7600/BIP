@@ -13,7 +13,7 @@
 class Controller_article extends Controller_user
 {
     protected $title = 'Artykuły';
-    public $template = 'article/template';
+    public $template = 'template';
     protected $role;
 
     public function before()
@@ -24,9 +24,20 @@ class Controller_article extends Controller_user
 
     public function action_index()
     {
+        $articles = ORM::factory('article')->find_all();
         
+        $this->template->articles = $articles;
     }
 
+    public function action_show()
+    {
+        $id = $this->request->param('id');
+        
+        $article = ORM::factory('article', $id);
+        
+        $this->template->article = $article;        
+    }
+    
     public function action_add()
     {
         

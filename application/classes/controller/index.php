@@ -3,7 +3,7 @@
 class Controller_Index extends Controller_Template
 {
     public $title = 'BIP';
-    public $template = 'index/template';
+    public $template = 'template';
 
     public function action_index()
     {

@@ -15,7 +15,7 @@ defined('SYSPATH') or die('No direct script access.');
 class Controller_user extends Controller_template
 {
     protected $title = 'Logowanie';
-    public $template = 'user/template';
+    public $template = 'template';
     protected $role;
 
     public function action_index()
