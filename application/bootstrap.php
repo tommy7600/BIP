@@ -22,7 +22,7 @@ else
  * @link http://kohanaframework.org/guide/using.configuration
  * @link http://www.php.net/manual/timezones
  */
-date_default_timezone_set('America/Chicago');
+date_default_timezone_set('Europe/Warsaw');
 
 /**
  * Set the default locale.
@@ -30,7 +30,7 @@ date_default_timezone_set('America/Chicago');
  * @link http://kohanaframework.org/guide/using.configuration
  * @link http://www.php.net/manual/function.setlocale
  */
-setlocale(LC_ALL, 'en_US.utf-8');
+setlocale(LC_ALL, 'pl_PL.utf-8');
 
 /**
  * Enable the Kohana auto-loader.
@@ -61,7 +61,7 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 /**
  * Set the default language
  */
-I18n::lang('en-us');
+I18n::lang('pl_PL');
 
 /**
  * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
@@ -90,8 +90,18 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/kohana/',
+	'base_url'   => '/bip/',
+	'index_file' => FALSE, // SEO (avoid index.php/mycontroller/action)
+    'profile' => (Kohana::$environment !== Kohana::PRODUCTION), // kohana profiler
+    'caching' => (Kohana::$environment === Kohana::PRODUCTION), // kohana caching
+    'errors' => TRUE, //for custom 404, 500 FALSE for internal error handling
 ));
+
+/**
+ * Epic cookie salt!
+ */
+Cookie::$salt       = '145vcxkjkjr3kj3kj42k4woijtko9kii8y';
+Cookie::$expiration = Date::WEEK;
 
 /**
  * Attach the file write to logging. Multiple writers are supported.
@@ -107,13 +117,13 @@ Kohana::$config->attach(new Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	// 'auth'       => MODPATH.'auth',       // Basic authentication
-	// 'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	// 'database'   => MODPATH.'database',   // Database access
+	 'auth'       => MODPATH.'auth',       // Basic authentication
+	 'cache'      => MODPATH.'cache',      // Caching with multiple backends
+	 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
+	 'database'   => MODPATH.'database',   // Database access
 	// 'image'      => MODPATH.'image',      // Image manipulation
 	// 'minion'     => MODPATH.'minion',     // CLI Tasks
-	// 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
+	 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 	));
