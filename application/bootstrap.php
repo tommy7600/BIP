@@ -100,7 +100,7 @@ Kohana::init(array(
 /**
  * Epic cookie salt!
  */
-Cookie::$salt       = '145vcxkjkjr3kj3kj42k4woijtko9kii8y';
+Cookie::$salt       	= '145vcxkjkjr3kj3kj42k4woijtko9kii8y';
 Cookie::$expiration = Date::WEEK;
 
 /**
@@ -134,6 +134,13 @@ Kohana::modules(array(
  */
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
-		'controller' => 'welcome',
+		'controller' => 'index',
+		'action'     => 'index',
+	));
+
+Route::set('admin', 'admin/(<controller>(/<action>(/<id>)))')
+	->defaults(array(
+		'directory'	 => 'admin',
+		'controller' => 'index',
 		'action'     => 'index',
 	));
