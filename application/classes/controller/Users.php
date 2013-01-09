@@ -10,17 +10,10 @@
  *
  * @author tbula
  */
-class Controller_manageuser extends Controller_user
+class Controller_users extends Controller_template
 {
     protected $title = 'Użytkownicy';
     public $template = 'template';
-    protected $role;
-
-    public function before()
-    {
-        $this->role = array(Kohana::$config->load('roles')->get('admin'));
-        parent::before();
-    }
 
     public function action_index()
     {
@@ -62,17 +55,7 @@ class Controller_manageuser extends Controller_user
         $this->LoadRoles();
     }
 
-    public function action_remove()
-    {
-        $user = ORM::factory('user')
-                ->where('id', '=', $this->request->param('id'))
-                ->find()
-                ->delete();
-
-        HTTP::redirect('manageuser');
-    }
-
-    public function action_edit()
+    public function action_settings()
     {
         $user = ORM::factory('user', $this->request->param('id'));
         $this->SaveUser($user);
