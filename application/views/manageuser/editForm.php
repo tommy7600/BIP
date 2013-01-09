@@ -1,6 +1,5 @@
-<form action="" method="post">
-
-    <div class="span4 offset3 well">
+<div class="span4 offset3 well">    
+    <form action="" method="post">
         <div class="span4 span-left">
             <p>
                 Email<input type="text" name="email" value="<?php echo $user->email ?>">
@@ -32,5 +31,5 @@
             <input type="submit" class="btn btn-success" value="Add">
             <a href ="/manageuser" class ="btn">Anuluj</a>
         </div>
-    </div>
-</form>
+    </form>
+</div>

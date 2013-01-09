@@ -70,18 +70,17 @@
                 </div>
             </div>
         </div>
-
         <div class="container">
-            <?php include $content ?>
-        
-           <hr>
-
-            <footer>
-                <p>&copy; BIP TEAM FOR THE WIN 2013</p>
-            </footer>
-
+            <div class="row">
+                <div class="span12">
+                    <?php include $content ?>
+                </div>
+            </div>
         </div> <!-- /container -->
-
+        <footer>
+            <hr>
+            <p>&copy; BIP TEAM FOR THE WIN 2013</p>
+        </footer>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
