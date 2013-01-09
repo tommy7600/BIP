@@ -10,7 +10,7 @@
  *
  * @author tbula
  */
-class Controller_galleries extends Controller_template
+class Controller_Galleries extends Controller_Template
 {
     protected $title = 'Galeria';
     public $template = 'template';
