@@ -20,8 +20,8 @@ return array
 			 */
 			'hostname'   => 'localhost',
 			'database'   => 'bip',
-			'username'   => 'root',
-			'password'   => 'password',
+			'username'   => 'forfit',
+			'password'   => 'forfit',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',

@@ -90,7 +90,7 @@ class Controller_users extends Controller_template
     private function SaveUser(Model_User $user)
     {
         $extraRules = NULL;
-        $this->template->content = 'manageuser/editForm';
+        $this->template->content = 'users/editForm';
         $post = $this->request->post();
         if (isset($post['email']))
         {
@@ -109,7 +109,7 @@ class Controller_users extends Controller_template
                 $user->save($extraRules);
                 $this->SaveRole($user);
 
-                HTTP::redirect('/manageuser');
+                HTTP::redirect('/users');
             }
             catch (ORM_Validation_Exception $ex)
             {
