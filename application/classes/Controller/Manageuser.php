@@ -18,53 +18,53 @@ class Controller_Manageuser extends Controller_User
 
     public function before()
     {
-        //this->role = array(Kohana::$config->load('roles')->get('admin'));
-        //parent::before();
+        $this->role = array(Kohana::$config->load('roles')->get('admin'));
+        parent::before();
     }
 
     public function action_index()
     {
-//        $post = $this->request->post();
-//        try
-//        {
-//            $query = ORM::factory('user');
-//            if (isset($post['email']) ||
-//                    isset($post['username']) ||
-//                    isset($post['roles']))
-//            {
-//                if (isset($post['email']) && !empty($post['email']))
-//                {
-//                    $query = $query->and_where('email', '=', $post['email']);
-//                }
-//
-//                if (isset($post['username']) && !empty($post['username']))
-//                {
-//                    $query = $query->and_where('username', '=', $post['username']);
-//                }
-//
-//                if (isset($post['roles']) && count($post['roles']) > 0)
-//                {
-//                    $query = $query->join('roles_users', 'LEFT')
-//                            ->on('id', '=', 'user_id');
-//                    foreach ($post['roles'] as $role)
-//                    {
-//                        $query = $query->and_where('role_id', '=', $role);
-//                    }
-//                }
-//            }
-//        }
-//        catch (ORM_Validation_Exception $ex)
-//        {
-//            $this->template->errors = $ex->errors('models');
-//        }
-//
-//        $this->template->users = $query->find_all();
-//        $this->LoadRoles();
+        $post = $this->request->post();
+        try
+        {
+            $query = ORM::factory('User');
+            if (isset($post['email']) ||
+                    isset($post['username']) ||
+                    isset($post['roles']))
+            {
+                if (isset($post['email']) && !empty($post['email']))
+                {
+                    $query = $query->and_where('email', '=', $post['email']);
+                }
+
+                if (isset($post['username']) && !empty($post['username']))
+                {
+                    $query = $query->and_where('username', '=', $post['username']);
+                }
+
+                if (isset($post['roles']) && count($post['roles']) > 0)
+                {
+                    $query = $query->join('roles_users', 'LEFT')
+                            ->on('id', '=', 'user_id');
+                    foreach ($post['roles'] as $role)
+                    {
+                        $query = $query->and_where('role_id', '=', $role);
+                    }
+                }
+            }
+        }
+        catch (ORM_Validation_Exception $ex)
+        {
+            $this->template->errors = $ex->errors('models');
+        }
+
+        $this->template->users = $query->find_all();
+        $this->LoadRoles();
     }
 
     public function action_remove()
     {
-        $user = ORM::factory('user')
+        $user = ORM::factory('User')
                 ->where('id', '=', $this->request->param('id'))
                 ->find()
                 ->delete();
@@ -74,18 +74,18 @@ class Controller_Manageuser extends Controller_User
 
     public function action_edit()
     {
-        $user = ORM::factory('user', $this->request->param('id'));
+        $user = ORM::factory('User', $this->request->param('id'));
         $this->SaveUser($user);
     }
 
     public function action_add()
     {
-        $this->SaveUser(ORM::factory('user'));
+        $this->SaveUser(ORM::factory('User'));
     }
 
     private function LoadRoles()
     {
-        $this->template->roles = ORM::factory('role')
+        $this->template->roles = ORM::factory('Role')
                 ->find_all()
                 ->as_array('id', 'name');
         $this->template->userRole = array();
@@ -134,7 +134,7 @@ class Controller_Manageuser extends Controller_User
             }
         }
 
-        $this->template->roles = ORM::factory('role')
+        $this->template->roles = ORM::factory('Role')
                 ->find_all();
         $this->template->activeRole = $user->roles->find()->id;
         $this->template->user = $user;
