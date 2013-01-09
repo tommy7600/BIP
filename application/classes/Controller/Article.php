@@ -10,7 +10,7 @@
  *
  * @author tbula
  */
-class Controller_article extends Controller_user
+class Controller_Article extends Controller_User
 {
     protected $title = 'Artykuły';
     public $template = 'template';
@@ -24,7 +24,7 @@ class Controller_article extends Controller_user
 
     public function action_index()
     {
-        $articles = ORM::factory('article')->find_all();
+        $articles = ORM::factory('Article')->find_all();
         
         $this->template->articles = $articles;
     }
@@ -40,7 +40,7 @@ class Controller_article extends Controller_user
     
     public function action_add()
     {
-        
+
     }
 
     public function action_edit()

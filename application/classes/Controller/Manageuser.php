@@ -10,7 +10,7 @@
  *
  * @author tbula
  */
-class Controller_manageuser extends Controller_user
+class Controller_Manageuser extends Controller_User
 {
     protected $title = 'Użytkownicy';
     public $template = 'template';
@@ -27,7 +27,7 @@ class Controller_manageuser extends Controller_user
         $post = $this->request->post();
         try
         {
-            $query = ORM::factory('user');
+            $query = ORM::factory('User');
             if (isset($post['email']) ||
                     isset($post['username']) ||
                     isset($post['roles']))
@@ -64,7 +64,7 @@ class Controller_manageuser extends Controller_user
 
     public function action_remove()
     {
-        $user = ORM::factory('user')
+        $user = ORM::factory('User')
                 ->where('id', '=', $this->request->param('id'))
                 ->find()
                 ->delete();
@@ -74,18 +74,18 @@ class Controller_manageuser extends Controller_user
 
     public function action_edit()
     {
-        $user = ORM::factory('user', $this->request->param('id'));
+        $user = ORM::factory('User', $this->request->param('id'));
         $this->SaveUser($user);
     }
 
     public function action_add()
     {
-        $this->SaveUser(ORM::factory('user'));
+        $this->SaveUser(ORM::factory('User'));
     }
 
     private function LoadRoles()
     {
-        $this->template->roles = ORM::factory('role')
+        $this->template->roles = ORM::factory('Role')
                 ->find_all()
                 ->as_array('id', 'name');
         $this->template->userRole = array();
@@ -134,7 +134,7 @@ class Controller_manageuser extends Controller_user
             }
         }
 
-        $this->template->roles = ORM::factory('role')
+        $this->template->roles = ORM::factory('Role')
                 ->find_all();
         $this->template->activeRole = $user->roles->find()->id;
         $this->template->user = $user;

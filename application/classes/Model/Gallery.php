@@ -3,20 +3,20 @@
 class Model_Gallery extends ORM
 {
     protected $_belongs_to = array(
-        'articles_revision' => array(),
-        'galleries_revision' => array()
+        'Articles_Revision' => array(),
+        'Galleries_Revision' => array()
     );
     
     protected $_has_one = array(
       'current' => array(
-          'model' => 'galleries_revision',
+          'model' => 'Galleries_Revision',
           'foreign_key' => 'id'
       )
     );
     
     protected $_has_many = array(
        'revisions' => array(
-           'model' => 'galleries_revision',
+           'model' => 'Galleries_Revision',
            'foreign_key' => 'gallery_id'
        )
     );

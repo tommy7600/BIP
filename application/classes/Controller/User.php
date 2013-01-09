@@ -12,7 +12,7 @@ defined('SYSPATH') or die('No direct script access.');
  *
  * @author tbula
  */
-class Controller_user extends Controller_template
+class Controller_user extends Controller_Template
 {
     protected $title = 'Logowanie';
     public $template = 'template';
