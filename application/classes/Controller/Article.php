@@ -40,7 +40,7 @@ class Controller_Article extends Controller_User
     
     public function action_add()
     {
-        
+
     }
 
     public function action_edit()
