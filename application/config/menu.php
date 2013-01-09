@@ -11,7 +11,7 @@ return array(
     'auth' => array(
         'login' => array(
             'title' => 'Login',
-            'roles' => array('all'),
+            'roles' => array('all'), 
         ),
         'logout' => array(
             'title' => 'Logout',

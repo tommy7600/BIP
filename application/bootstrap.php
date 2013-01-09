@@ -90,7 +90,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/bip/',
+	'base_url'   => '/',
 	'index_file' => FALSE, // SEO (avoid index.php/mycontroller/action)
     'profile' => (Kohana::$environment !== Kohana::PRODUCTION), // kohana profiler
     'caching' => (Kohana::$environment === Kohana::PRODUCTION), // kohana caching
@@ -134,13 +134,6 @@ Kohana::modules(array(
  */
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
-		'controller' => 'index',
-		'action'     => 'index',
-	));
-
-Route::set('admin', 'admin/(<controller>(/<action>(/<id>)))')
-	->defaults(array(
-		'directory'	 => 'admin',
 		'controller' => 'index',
 		'action'     => 'index',
 	));

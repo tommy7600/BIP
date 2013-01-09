@@ -10,7 +10,7 @@
  *
  * @author tbula
  */
-class Controller_manageuser extends Controller_user
+class Controller_Manageuser extends Controller_User
 {
     protected $title = 'Użytkownicy';
     public $template = 'template';
@@ -18,48 +18,48 @@ class Controller_manageuser extends Controller_user
 
     public function before()
     {
-        $this->role = array(Kohana::$config->load('roles')->get('admin'));
-        parent::before();
+        //this->role = array(Kohana::$config->load('roles')->get('admin'));
+        //parent::before();
     }
 
     public function action_index()
     {
-        $post = $this->request->post();
-        try
-        {
-            $query = ORM::factory('user');
-            if (isset($post['email']) ||
-                    isset($post['username']) ||
-                    isset($post['roles']))
-            {
-                if (isset($post['email']) && !empty($post['email']))
-                {
-                    $query = $query->and_where('email', '=', $post['email']);
-                }
-
-                if (isset($post['username']) && !empty($post['username']))
-                {
-                    $query = $query->and_where('username', '=', $post['username']);
-                }
-
-                if (isset($post['roles']) && count($post['roles']) > 0)
-                {
-                    $query = $query->join('roles_users', 'LEFT')
-                            ->on('id', '=', 'user_id');
-                    foreach ($post['roles'] as $role)
-                    {
-                        $query = $query->and_where('role_id', '=', $role);
-                    }
-                }
-            }
-        }
-        catch (ORM_Validation_Exception $ex)
-        {
-            $this->template->errors = $ex->errors('models');
-        }
-
-        $this->template->users = $query->find_all();
-        $this->LoadRoles();
+//        $post = $this->request->post();
+//        try
+//        {
+//            $query = ORM::factory('user');
+//            if (isset($post['email']) ||
+//                    isset($post['username']) ||
+//                    isset($post['roles']))
+//            {
+//                if (isset($post['email']) && !empty($post['email']))
+//                {
+//                    $query = $query->and_where('email', '=', $post['email']);
+//                }
+//
+//                if (isset($post['username']) && !empty($post['username']))
+//                {
+//                    $query = $query->and_where('username', '=', $post['username']);
+//                }
+//
+//                if (isset($post['roles']) && count($post['roles']) > 0)
+//                {
+//                    $query = $query->join('roles_users', 'LEFT')
+//                            ->on('id', '=', 'user_id');
+//                    foreach ($post['roles'] as $role)
+//                    {
+//                        $query = $query->and_where('role_id', '=', $role);
+//                    }
+//                }
+//            }
+//        }
+//        catch (ORM_Validation_Exception $ex)
+//        {
+//            $this->template->errors = $ex->errors('models');
+//        }
+//
+//        $this->template->users = $query->find_all();
+//        $this->LoadRoles();
     }
 
     public function action_remove()
