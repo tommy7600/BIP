@@ -10,24 +10,17 @@
  *
  * @author tbula
  */
-class Controller_Manageuser extends Controller_User
+class Controller_users extends Controller_template
 {
     protected $title = 'Użytkownicy';
     public $template = 'template';
-    protected $role;
-
-    public function before()
-    {
-        $this->role = array(Kohana::$config->load('roles')->get('admin'));
-        parent::before();
-    }
 
     public function action_index()
     {
         $post = $this->request->post();
         try
         {
-            $query = ORM::factory('User');
+            $query = ORM::factory('user');
             if (isset($post['email']) ||
                     isset($post['username']) ||
                     isset($post['roles']))
@@ -62,30 +55,20 @@ class Controller_Manageuser extends Controller_User
         $this->LoadRoles();
     }
 
-    public function action_remove()
+    public function action_settings()
     {
-        $user = ORM::factory('User')
-                ->where('id', '=', $this->request->param('id'))
-                ->find()
-                ->delete();
-
-        HTTP::redirect('manageuser');
-    }
-
-    public function action_edit()
-    {
-        $user = ORM::factory('User', $this->request->param('id'));
+        $user = ORM::factory('user', $this->request->param('id'));
         $this->SaveUser($user);
     }
 
     public function action_add()
     {
-        $this->SaveUser(ORM::factory('User'));
+        $this->SaveUser(ORM::factory('user'));
     }
 
     private function LoadRoles()
     {
-        $this->template->roles = ORM::factory('Role')
+        $this->template->roles = ORM::factory('role')
                 ->find_all()
                 ->as_array('id', 'name');
         $this->template->userRole = array();
@@ -134,7 +117,7 @@ class Controller_Manageuser extends Controller_User
             }
         }
 
-        $this->template->roles = ORM::factory('Role')
+        $this->template->roles = ORM::factory('role')
                 ->find_all();
         $this->template->activeRole = $user->roles->find()->id;
         $this->template->user = $user;

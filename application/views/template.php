@@ -11,82 +11,73 @@
         <meta name="viewport" content="width=device-width">
 
         <base href="<?php echo URL::base('http'); ?>">
-        
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
         <style>
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>
-        <link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css">
-        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="/assets/css/main.css">
 
-        <script src="assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-
-        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <span class="brand">BIP</span>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li><a href="#">Strona główna</a></li>
-                            <li><a href="article">Artykuły</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <form class="navbar-form pull-right">
-                            <?php if (Auth::instance()->logged_in()): ?>
-                            <a href="user/logout">Logout</a>
-                            <?php else: ?> 
-                            <input class="span2" type="text" placeholder="Email">
-                            <input class="span2" type="password" placeholder="Password">
-                            <button type="submit" class="btn">Sign in</button>
-                            <?php endif ?> 
-                        </form>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
-                <div class="span12">
+                <div class="span2">
+                    <ul class="nav nav-list well">
+                        <?php
+                        $menu = Kohana::$config->load('menu');
+                        foreach ($menu as $controller => $controllerData)
+                        {
+                            foreach ($menu[$controller]['actions'] as $actions => $action)
+                            {
+                                if ($menu[$controller]['actions'][$actions]['title'] != NULL &&
+                                        count(array_intersect($userRoles, $menu[$controller]['actions'][$actions]['roles'])) > 0)
+                                {
+                                    echo '<li class="nav-header">' . $menu[$controller]['title'] . '</li>';
+                                    foreach ($menu[$controller]['actions'] as $actions => $action)
+                                    {
+                                        if ($menu[$controller]['actions'][$actions]['title'] != NULL &&
+                                                count(array_intersect($userRoles, $menu[$controller]['actions'][$actions]['roles'])) > 0)
+                                        {
+                                            echo '<li><a href="' . $controller . '/' . $actions . '">' . $menu[$controller]['actions'][$actions]['title'] . '</a></li>';
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        ?>
+                        <?php if (Auth::instance()->logged_in()): ?>
+                            <li><a href="Auth/logout">Logout</a></li>
+                        <?php endif; ?>                        
+                    </ul>
+                </div>
+                <div class="span6">
                     <?php include $content ?>
                 </div>
             </div>
-        </div> <!-- /container -->
-        <footer>
             <hr>
-            <p>&copy; BIP TEAM FOR THE WIN 2013</p>
-        </footer>
+
+            <footer>
+                <p>&copy; BIP TEAM FOR THE WIN 2013</p>
+            </footer>
+
+        </div> <!-- /container -->
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 
-        <script src="assets/js/vendor/bootstrap.min.js"></script>
+        <script src="/assets/js/vendor/bootstrap.min.js"></script>
 
-        <script src="assets/js/main.js"></script>
+        <script src="/assets/js/main.js"></script>
 
     </body>
 </html>
