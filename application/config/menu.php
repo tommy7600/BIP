@@ -65,6 +65,14 @@ return array(
                 'title' => NULL,
                 'roles' => array('god'),
             ),
+            'uploadImages' => array(
+                'title' => NULL,
+                'roles' => array('redactor', 'god'),
+            ),
+            'selectImages' => array(
+                'title' => NULL,
+                'roles' => array('redactor', 'god'),
+            ),
         ),
     ),
     'Users' => array(

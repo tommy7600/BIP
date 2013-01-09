@@ -17,7 +17,6 @@ class Controller_Galleries extends Controller_Template
 
     public function action_index()
     {
-        
     }
 
     public function action_add()
@@ -31,6 +30,16 @@ class Controller_Galleries extends Controller_Template
     }
 
     public function action_remove()
+    {
+        
+    }
+    
+    public function action_uploadImages()
+    {
+        
+    }
+    
+    public function action_selectImages()
     {
         
     }
