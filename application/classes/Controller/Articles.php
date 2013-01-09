@@ -17,7 +17,7 @@ class Controller_articles extends Controller_template
 
     public function action_index()
     {
-        $articles = ORM::factory('article')->find_all();
+        $articles = ORM::factory('Article')->find_all();
 
         $this->template->articles = $articles;
     }
@@ -26,7 +26,7 @@ class Controller_articles extends Controller_template
     {
         $id = $this->request->param('id');
 
-        $article = ORM::factory('article', $id);
+        $article = ORM::factory('Article', $id);
 
         $this->template->article = $article;
     }
@@ -38,7 +38,7 @@ class Controller_articles extends Controller_template
 
     public function action_add()
     {
-        
+
     }
 
     public function action_edit()
