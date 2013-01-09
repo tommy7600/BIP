@@ -5,4 +5,5 @@ return array(
     'admin' => 'admin',
     'redactor' => 'redactor',
     'god' => 'god',
+    'all' => 'all',
 );
