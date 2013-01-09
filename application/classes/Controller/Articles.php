@@ -10,7 +10,7 @@
  *
  * @author tbula
  */
-class Controller_articles extends Controller_template
+class Controller_Articles extends Controller_Template
 {
     protected $title = 'Artykuły';
     public $template = 'template';
