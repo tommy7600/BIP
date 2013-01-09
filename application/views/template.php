@@ -34,19 +34,14 @@
                     <ul class="nav nav-list well">
                         <?php
                         $menu = Kohana::$config->load('menu');
-                        foreach ($menu as $controller => $controllerData)
-                        {
-                            foreach ($menu[$controller]['actions'] as $actions => $action)
-                            {
+                        foreach ($menu as $controller => $controllerData) {
+                            foreach ($menu[$controller]['actions'] as $actions => $action) {
                                 if ($menu[$controller]['actions'][$actions]['title'] != NULL &&
-                                        count(array_intersect($userRoles, $menu[$controller]['actions'][$actions]['roles'])) > 0)
-                                {
+                                        count(array_intersect($userRoles, $menu[$controller]['actions'][$actions]['roles'])) > 0) {
                                     echo '<li class="nav-header">' . $menu[$controller]['title'] . '</li>';
-                                    foreach ($menu[$controller]['actions'] as $actions => $action)
-                                    {
+                                    foreach ($menu[$controller]['actions'] as $actions => $action) {
                                         if ($menu[$controller]['actions'][$actions]['title'] != NULL &&
-                                                count(array_intersect($userRoles, $menu[$controller]['actions'][$actions]['roles'])) > 0)
-                                        {
+                                                count(array_intersect($userRoles, $menu[$controller]['actions'][$actions]['roles'])) > 0) {
                                             echo '<li><a href="' . $controller . '/' . $actions . '">' . $menu[$controller]['actions'][$actions]['title'] . '</a></li>';
                                         }
                                     }
@@ -61,7 +56,7 @@
                     </ul>
                 </div>
                 <div class="span6">
-                    <?php include $content ?>
+                        <?php include $content ?>
                 </div>
             </div>
             <hr>
@@ -78,6 +73,6 @@
         <script src="/assets/js/vendor/bootstrap.min.js"></script>
 
         <script src="/assets/js/main.js"></script>
-
+        <script src="/assets/js/galleryUploadImages.js"></script>
     </body>
 </html>
