@@ -49,7 +49,7 @@ class Controller_Articles extends Controller_Template
                     ->find_all();
             
             $this->template->articles = $articles;
-            $this->template->query = $q;
+            $this->template->q = $q;
         }
     }
 

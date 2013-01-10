@@ -1,5 +1,5 @@
 <form method="get">
-    <input type="text" name="q"<?php if (isset($query)) echo ' value="' . $query . '"' ?>>
+    <input type="text" name="q"<?php if (isset($q)) echo ' value="' . $q . '"' ?>>
     <button type="submit">Search</button>
 </form>
 <?php if (isset($articles)): ?>
