@@ -3,14 +3,10 @@
 class Model_Article extends ORM
 {
     protected $_belongs_to = array(
-      'Articles_Revision'   => array() 
-    );
-    
-    protected $_has_one = array(
-        'current' => array(
-            'model' => 'Articles_Revision',
-            'foreign_key' => 'id'
-        )
+      'current'   => array(
+          'model' => 'Articles_Revision',
+          'foreign_key' => 'approved_revision_id'
+      ) 
     );
     
     protected $_has_many = array(
