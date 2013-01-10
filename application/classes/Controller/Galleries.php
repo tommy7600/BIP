@@ -12,7 +12,6 @@
  */
 class Controller_Galleries extends Controller_Template
 {
-
     protected $title = 'Galeria';
     public $template = 'template';
 
@@ -23,17 +22,21 @@ class Controller_Galleries extends Controller_Template
 
     public function action_add()
     {
-        if (isset(session::istance()->get('galleryImagesId')))
+        $session = Session::instance();
+        $galleryImagesId = $session->get('galleryImagesId');
+        if (isset($galleryImagesId))
         {
-            $galleryImagesId = session::istance()->get('galleryImagesId');
             $images = array();
             foreach ($galleryImagesId as $imageId)
             {
                 $image = ORM::factory('image')
                         ->where('id', '=', $imageId)
-                        ->find();
+                        ->find()
+                        ->as_array('id', 'path');
                 $images[] = $image;
             }
+            
+            $this->template->set('images', $images);
         }
     }
 
@@ -52,11 +55,9 @@ class Controller_Galleries extends Controller_Template
         if (isset($_FILES['image']))
         {
             $files = Common_File::ReArrayFiles($_FILES['image']);
-            if (isset(session::istance()->get('galleryImagesId')))
-            {
-                $galleryImagesId = session::istance()->get('galleryImagesId');
-            }
-            else
+            $session = Session::instance();
+            $galleryImagesId = $session->get('galleryImagesId');
+            if ($galleryImagesId === NULL)
             {
                 $galleryImagesId = array();
             }
@@ -65,7 +66,7 @@ class Controller_Galleries extends Controller_Template
             {
                 if (!$files[$key]['error'])
                 {
-                    $fileName = 'upload/images/' . sha1_file($files[$key]["tmp_name"] . date()) . '.' . substr($files[$key]["name"], strrpos($files[$key]["name"], '.') + 1);
+                    $fileName = 'upload/images/' . sha1($files[$key]["tmp_name"] . date("Y-m-d H:i:s", time())) . '.' . substr($files[$key]["name"], strrpos($files[$key]["name"], '.') + 1);
                     if (!move_uploaded_file($files[$key]['tmp_name'], $fileName))
                     {
                         die('Possible upload attack.');
@@ -83,7 +84,7 @@ class Controller_Galleries extends Controller_Template
                 }
             }
 
-            session::instance()->set('galleryImagesId', $galleryImagesId);
+            $session->set('galleryImagesId', $galleryImagesId);
             HTTP::redirect('galleries/add');
         }
     }
@@ -92,5 +93,4 @@ class Controller_Galleries extends Controller_Template
     {
         
     }
-
 }
