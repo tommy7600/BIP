@@ -10,3 +10,13 @@
     <a class="btn" href="Galleries/uploadImages">Upload</a>
     <a class="btn" href="Galleries/selectImages">Select</a>
 </div>
+<div class="span8">
+    <?php if (isset($images)): ?>
+        <?php foreach ($images as $image) : ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+
+
+    }
+</div>
