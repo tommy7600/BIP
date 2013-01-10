@@ -21,8 +21,8 @@
                     <?php endforeach; ?>
                 </td>
                 <td>
-                    <a href="/manageuser/remove/<?php echo $user->id ?>"><i class="icon-remove"></i></a>
-                    <a href="/manageuser/edit/<?php echo $user->id ?>"><i class="icon-pencil"></i></a>
+                    <a href="/users/remove/<?php echo $user->id ?>"><i class="icon-remove"></i></a>
+                    <a href="/users/edit/<?php echo $user->id ?>"><i class="icon-pencil"></i></a>
                 </td>
             </tr>
         <?php endforeach; ?>

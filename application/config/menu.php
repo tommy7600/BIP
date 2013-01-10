@@ -83,8 +83,12 @@ return array(
                 'roles' => array('admin'),
             ),
             'settings' => array(
-                'title' => NULL,
+                'title' => 'Settings',
                 'roles' => array('admin', 'redactor', 'god'),
+            ),
+            'edit' => array(
+                'title' => NULL,
+                'roles' => array('admin'),
             ),
             'index' => array(
                 'title' => 'List',

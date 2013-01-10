@@ -61,6 +61,12 @@ class Controller_Users extends Controller_Template
         $this->SaveUser($user);
     }
 
+    public function action_edit()
+    {
+        $user = ORM::factory('User', $this->request->param('id'));
+        $this->SaveUser($user);
+    }
+    
     public function action_add()
     {
         $this->SaveUser(ORM::factory('User'));
