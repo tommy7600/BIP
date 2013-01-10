@@ -1,16 +1,17 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<div class="span8 well">
+    <form action="Galleries/selectImages" method="post">
+        <?php if (isset($images)): ?>
+            <ul class="thumbnails">
+                <?php foreach ($images as $image) : ?>
+                    <li class="span2">
+                        <div class="thumbnail">
+                            <img src="<?php echo $image->path ?>" width="100" height="100">
+                            <p> <input type="checkbox" name="selectedImage[<?php echo $image->id ?>]"></p>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+        <input type="submit" value="Select">
+    </form>
+</div>

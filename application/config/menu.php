@@ -73,6 +73,10 @@ return array(
                 'title' => NULL,
                 'roles' => array('redactor', 'god'),
             ),
+            'operation' => array(
+                'title' => NULL,
+                'roles' => array('redactor', 'god'),
+            ),
         ),
     ),
     'Users' => array(
