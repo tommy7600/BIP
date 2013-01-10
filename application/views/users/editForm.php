@@ -29,7 +29,7 @@
         </div>
         <div class="offset1">
             <input type="submit" class="btn btn-success" value="Add">
-            <a href ="/manageuser" class ="btn">Anuluj</a>
+            <a href ="/user" class ="btn">Anuluj</a>
         </div>
     </form>
 </div>
