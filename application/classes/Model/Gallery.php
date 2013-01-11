@@ -3,14 +3,9 @@
 class Model_Gallery extends ORM
 {
     protected $_belongs_to = array(
-        'Articles_Revision' => array(),
-        'Galleries_Revision' => array()
-    );
-    
-    protected $_has_one = array(
-      'current' => array(
+        'current' => array(
           'model' => 'Galleries_Revision',
-          'foreign_key' => 'id'
+          'foreign_key' => 'approved_revision_id'
       )
     );
     

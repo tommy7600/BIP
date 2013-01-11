@@ -3,29 +3,21 @@
 class Model_Galleries_Revision extends ORM
 {
     protected $_belongs_to = array(
-        'Gallery'   => array()
-    );
-    
-    protected $_has_one = array(
         'gallery'   => array(
             'model' => 'Gallery',
-            'foreign_key' => 'id'
+            'foreign_key' => 'gallery_id'
         ),
         'title' => array(
             'model' => 'Galleries_Title',
-            'foreign_key' => 'id'
-        ),
-        'gallery' => array(
-            'model' => 'Gallery',
-            'foreign_key' => 'id'
+            'foreign_key' => 'title_id'
         ),
         'author' => array(
             'model' => 'User',
-            'foreign_key' => 'id'
+            'foreign_key' => 'author_id'
         ),
         'approved_by' => array(
             'model' => 'User',
-            'foreign_key' => 'id'
+            'foreign_key' => 'approved_by_id'
         ),
     );
     
@@ -34,7 +26,7 @@ class Model_Galleries_Revision extends ORM
           'model' => 'Images_Revision',
           'through' => 'Galleries_Images',
           'foreign_key' => 'gallery_revision_id',
-          'far_key' => 'id'
+          'far_key' => 'image_revision_id'
       )  
     );
 }

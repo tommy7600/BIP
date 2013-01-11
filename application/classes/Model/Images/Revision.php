@@ -2,14 +2,14 @@
 
 class Model_Images_Revision extends ORM
 {
-    protected $_has_one = array(
+    protected $_belongs_to = array(
         'image' => array(
             'model' => 'Image',
-            'foreign_key' => 'id'
+            'foreign_key' => 'image_id'
         ),
         'description' => array(
             'model' => 'Images_Description',
-            'foreign_key' => 'id'
+            'foreign_key' => 'description_id'
         )
     );
     
@@ -18,7 +18,7 @@ class Model_Images_Revision extends ORM
           'model' => 'Galleries_Revision',
           'through' => 'Galleries_Images',
           'foreign_key' => 'image_revision_id',
-          'far_key' => 'id'
+          'far_key' => 'gallery_revision_id'
       )  
     );
 }
