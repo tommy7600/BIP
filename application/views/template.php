@@ -42,7 +42,7 @@
                                     foreach ($menu[$controller]['actions'] as $actions => $action) {
                                         if ($menu[$controller]['actions'][$actions]['title'] != NULL &&
                                                 count(array_intersect($userRoles, $menu[$controller]['actions'][$actions]['roles'])) > 0) {
-                                            echo '<li><a href="' . $controller . '/' . $actions . '">' . $menu[$controller]['actions'][$actions]['title'] . '</a></li>';
+                                            echo '<li><a href="' . strtolower($controller) . '/' . strtolower($actions) . '">' . $menu[$controller]['actions'][$actions]['title'] . '</a></li>';
                                         }
                                     }
                                     break;
@@ -51,7 +51,7 @@
                         }
                         ?>
                         <?php if (Auth::instance()->logged_in()): ?>
-                            <li><a href="Auth/logout">Logout</a></li>
+                        <li><a href="/auth/logout">Logout</a></li>
                         <?php endif; ?>                        
                     </ul>
                 </div>
