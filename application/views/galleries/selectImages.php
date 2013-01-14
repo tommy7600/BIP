@@ -7,6 +7,7 @@
                         <div class="thumbnail">
                             <img src="<?php echo $image->path ?>" width="100" height="100">
                             <p> <input type="checkbox" name="selectedImage[<?php echo $image->id ?>]"></p>
+                            <p> <input type="text" name="description[<?php echo $image->id ?>]"></p>
                         </div>
                     </li>
                 <?php endforeach; ?>

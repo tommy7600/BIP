@@ -19,7 +19,7 @@ INSERT INTO `images` (`id`, `path`) VALUES
 INSERT INTO `images_descriptions` (`id`, `description`) VALUES
 (1, 'test_image_description');
 
-INSERT INTO `images_revisions` (`id`, `image_id`, `revision`, `description`) VALUES
+INSERT INTO `images_revisions` (`id`, `image_id`, `revision`, `description_id`) VALUES
 (1, 1, 1, 1);
 
 INSERT INTO `roles` (`id`, `name`, `description`) VALUES

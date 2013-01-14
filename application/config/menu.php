@@ -61,7 +61,7 @@ return array(
                 'title' => NULL,
                 'roles' => array('redactor', 'god'),
             ),
-            'index' => array(
+            'list' => array(
                 'title' => 'List',
                 'roles' => array('redactor', 'god'),
             ),
@@ -77,9 +77,9 @@ return array(
                 'title' => NULL,
                 'roles' => array('redactor', 'god'),
             ),
-            'operation' => array(
+            'show' => array(
                 'title' => NULL,
-                'roles' => array('redactor', 'god'),
+                'roles' => array('all'),
             ),
         ),
     ),

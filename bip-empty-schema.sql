@@ -106,10 +106,10 @@ CREATE TABLE `images_revisions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image_id` int(10) unsigned NOT NULL,
   `revision` int(11) NOT NULL,
-  `description` int(10) unsigned DEFAULT NULL,
+  `description_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `images_revisions_images_ibfk_1` (`image_id`),
-  KEY `description` (`description`)
+  KEY `images_revisions_descriptions_ibfk1` (`description_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `roles`;
@@ -182,7 +182,7 @@ ALTER TABLE `galleries_revisions`
   ADD CONSTRAINT `galleries_revisions_users_ibfk_4` FOREIGN KEY (`approved_by_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `images_revisions`
-  ADD CONSTRAINT `images_revisions_ibfk_1` FOREIGN KEY (`description`) REFERENCES `images_descriptions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `images_revisions_ibfk_1` FOREIGN KEY (`description_id`) REFERENCES `images_descriptions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `images_revisions_images_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `roles_users`
