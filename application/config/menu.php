@@ -20,6 +20,10 @@ return array(
     'Articles' => array(
         'title' => 'Articles',
         'actions' => array(
+            'index' => array(
+                'title' => 'All articles',
+                'roles' => array('all'),
+            ),
             'add' => array(
                 'title' => 'Add new',
                 'roles' => array('redactor', 'god'),
@@ -32,7 +36,7 @@ return array(
                 'title' => 'Search',
                 'roles' => array('all'),
             ),
-            'index' => array(
+            'show' => array(
                 'title' => 'List',
                 'roles' => array('redactor', 'god'),
             ),
