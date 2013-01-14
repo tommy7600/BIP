@@ -24,6 +24,17 @@
                 <textarea id="articleContent" name="Content" rows="10"><?php echo $articleContent;?></textarea>
             </div>
         </div>
+        <div class="control-group">
+            <label class="control-label" for="Gallery">Gallery</label>
+            <div class="controls">
+                <select name="Gallery">
+                    <?php foreach($galleries as $gallery): ?>
+                        <option>None</option>
+                        <option <?php echo ($gallerySelected == $gallery->gallery_id) ? 'selected="selected" ' : NULL; ?>value="<?php echo $gallery->gallery_id; ?>"><?php echo $gallery->title->title; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
         <button class="btn btn-success" type="submit">Submit!</button>
     </form>
     <?php endif; ?>

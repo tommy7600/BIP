@@ -55,6 +55,12 @@ class Controller_Articles extends Controller_Template
 
     public function action_add()
     {
+        $galleries = ORM::factory('Galleries_Revision')
+                ->where('approved_by_id', '!=', NULL)
+                ->find_all();
+
+        $this->template->galleries = $galleries;
+        
         if (Valid::not_empty($_POST))
         {
             $post = $this->request->post();
@@ -84,6 +90,12 @@ class Controller_Articles extends Controller_Template
                     $article_rev->content_id = $content->id;
                     $article_rev->author_id = Auth::instance()->get_user();
                     $article_rev->date = time();
+                    
+                    if (isset($post['Gallery']) AND $post['Gallery'] !== 'None')
+                    {
+                        $article_rev->gallery_id = $post['Gallery'];
+                    }
+                    
                     $article_rev->save();
                     
                     $this->template->messages = array('New article has been added!');
@@ -122,7 +134,12 @@ class Controller_Articles extends Controller_Template
 
             $session = Session::instance();
             $this->template->articleLoaded = TRUE;
-
+            
+            $galleries = ORM::factory('Galleries_Revision')
+                ->where('approved_by_id', '!=', NULL)
+                ->find_all();
+            $this->template->galleries = $galleries;
+            $this->template->gallerySelected = $article->gallery_id;
             $this->template->articleTitle = $article->title->title;
             $session->set('articleTitle', $article->title->title);
             $this->template->articleContent = $article->content->content;
@@ -172,7 +189,25 @@ class Controller_Articles extends Controller_Template
 
     public function action_remove()
     {
-        
+        $id = $this->request->param('id');
+        if(!Valid::numeric($id))
+        {
+            $this->template->errors = array('Bad param given.');
+        }
+        else
+        {
+            try
+            {
+                $articles = ORM::factory('Articles_Revision', $id);
+                $articles->delete();
+                
+                $this->redirect('articles');
+            }
+            catch (ORM_Validation_Exception $e)
+            {
+                $this->template->errors = $e->errors();
+            }
+        }
     }
 
     public function action_confirm()
